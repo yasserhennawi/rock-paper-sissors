@@ -1,4 +1,4 @@
-const { getRandomAnswer, getInputName } = require("./helpers");
+const { getRandomAnswer, getInputByCode } = require("./helpers");
 
 // This model represents however plays the game, a user or a CPU
 class Player {
@@ -8,7 +8,7 @@ class Player {
   }
 
   logInput() {
-    console.log(`${this.name} played: ${getInputName(this.input).label}`);
+    console.log(`${this.name} played: ${getInputByCode(this.input).label}`);
   }
 }
 

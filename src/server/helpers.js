@@ -12,10 +12,11 @@ const readline = require("readline").createInterface({
   output: process.stdout,
 });
 
-const getInputName = (input) => INPUTS.find(({ code }) => code === input);
+const getInputByCode = (input) => INPUTS.find(({ code }) => code === input);
 
 const getRandomAnswer = () => INPUTS[Math.floor(Math.random() * INPUTS.length)];
 
+// Returns the Player.name of the winner, or null incase of draw
 const getWinner = (player1, player2) => {
   if (player1.input === player2.input) return null;
   return RULES[player1.input] === player2.input ? player1.name : player2.name;
@@ -93,7 +94,7 @@ const askQuestion = async (question, server) => {
 module.exports = {
   askQuestion,
   getRandomAnswer,
-  getInputName,
+  getInputByCode,
   getWinner,
   getQuestionText,
   terminateServer,
