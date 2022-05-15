@@ -3,13 +3,18 @@ const { playCLI } = require("./game");
 const { play } = require("./controllers");
 const bodyParser = require("body-parser");
 
+const myArgs = process.argv.slice(2);
+const isCliServer = myArgs.includes("cli");
+
 const app = express();
 const port = process.env.PORT || 3000;
 
 app.use(bodyParser.json());
 
 const server = app.listen(port, () => {
-  console.log(`Listening on port ${port}...`);
+  if (!isCliServer) {
+    console.log(`Listening on port ${port}...`);
+  }
 });
 
 app.get("/", (req, res) => {
@@ -21,6 +26,17 @@ app.get("/play", play.bind(null, true));
 
 // POST api for playing against CPI by sending body of:
 // { input: 'p'|'s'|'r' }
+// response should look like:
+/**
+ * {
+ *   "success":Bool,
+ *   "computer":'p'|'s'|'r',
+ *   "player":'p'|'s'|'r',
+ *   "winner": "computer" | "player" | null (indicating draw)
+ * }
+ */
 app.post("/play", play.bind(null, false));
 
-// playCLI(server);
+if (isCliServer) {
+  playCLI(server);
+}

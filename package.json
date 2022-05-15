@@ -4,7 +4,8 @@
   "description": "A simple Rock Paper Sissors express app",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node src/server/index.js",
+    "start:cli": "node src/server/index.js cli"
   },
   "author": "Yasser Hennawi",
   "license": "ISC",
