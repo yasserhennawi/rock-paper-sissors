@@ -2,6 +2,8 @@ const express = require("express");
 const { playCLI } = require("./game");
 const { play } = require("./controllers");
 const bodyParser = require("body-parser");
+const dotenv = require('dotenv');
+dotenv.config();
 
 const myArgs = process.argv.slice(2);
 const isCliServer = myArgs.includes("cli");

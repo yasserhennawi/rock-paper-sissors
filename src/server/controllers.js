@@ -26,7 +26,7 @@ const play = (simulate, req, res) => {
       throw new Error("Input doesn't exists");
     }
   } catch (err) {
-    res.status(500).send({ success: false, message: err.message });
+    res.status(500).send({ success: false, error: err.message });
   }
 };
 
